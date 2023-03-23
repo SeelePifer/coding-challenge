@@ -1,6 +1,6 @@
 package org.example.square.trade.model;
 
-public final class Furniture extends RootCategory {
+public final class Furniture extends RootCategory implements KeywordsEngine{
     private String keyword;
     private String type;
 

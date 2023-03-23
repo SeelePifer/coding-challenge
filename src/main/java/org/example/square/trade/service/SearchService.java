@@ -4,7 +4,7 @@ import org.example.square.trade.model.*;
 
 public final class SearchService {
 
-    private RootCategory rootCategory;
+    private  KeywordsEngine rootCategory;
     private Furniture furniture;
     private HomeApplicance homeApplicance;
 
@@ -18,43 +18,71 @@ public final class SearchService {
 
     private GeneralAppliance generalAppliance;
 
-    public SearchService(){}
-    public SearchService(RootCategory rootCategory, Furniture furniture, HomeApplicance homeApplicance, LawAndGarden lawAndGarden, MajorApplicance majorApplicance, MinorApplicance minorApplicance, KitchenAppliance kitchenAppliance, GeneralAppliance generalAppliance) {
+    public SearchService(KeywordsEngine rootCategory) {
         this.rootCategory = rootCategory;
+    }
+
+    public SearchService(Furniture furniture) {
         this.furniture = furniture;
+    }
+
+    public SearchService(HomeApplicance homeApplicance) {
         this.homeApplicance = homeApplicance;
+    }
+
+    public SearchService(LawAndGarden lawAndGarden) {
         this.lawAndGarden = lawAndGarden;
+    }
+
+    public SearchService(MajorApplicance majorApplicance) {
         this.majorApplicance = majorApplicance;
+    }
+
+    public SearchService(MinorApplicance minorApplicance) {
         this.minorApplicance = minorApplicance;
+    }
+
+    public SearchService(KitchenAppliance kitchenAppliance) {
         this.kitchenAppliance = kitchenAppliance;
+    }
+
+    public SearchService(GeneralAppliance generalAppliance) {
         this.generalAppliance = generalAppliance;
     }
 
     public RootCategory searchByKeyword(String s) {
-        if(rootCategory.getKeyword().equals(s)){
-            return rootCategory;
+
+        if (rootCategory != null && rootCategory.getKeyword().equals(s)) {
+            return (RootCategory) rootCategory;
         }
-        if(furniture.getKeyword().equals(s)){
+        if (furniture != null && furniture.getKeyword().equals(s)) {
             return furniture;
         }
-        if(homeApplicance.getKeyword().equals(s)){
+
+        if (homeApplicance != null && homeApplicance.getKeyword().equals(s)) {
             return homeApplicance;
         }
-        if(lawAndGarden.getKeyword().equals(s)){
+
+        if (lawAndGarden != null && lawAndGarden.getKeyword().equals(s)) {
             return lawAndGarden;
         }
-        if(majorApplicance.getKeyword().equals(s)){
+
+        if (majorApplicance != null && majorApplicance.getKeyword().equals(s)) {
             return majorApplicance;
         }
-        if(minorApplicance.getKeyword().equals(s)){
+
+        if (minorApplicance != null && minorApplicance.getKeyword().equals(s)) {
             return minorApplicance;
         }
-        if(kitchenAppliance.getKeyword().equals(s)){
+
+        if (kitchenAppliance != null && kitchenAppliance.getKeyword().equals(s)) {
             return kitchenAppliance;
         }
-        if(generalAppliance.getKeyword().equals(s)){
+
+        if (generalAppliance != null && generalAppliance.getKeyword().equals(s)) {
             return generalAppliance;
         }
+
         return null;
     }
 }

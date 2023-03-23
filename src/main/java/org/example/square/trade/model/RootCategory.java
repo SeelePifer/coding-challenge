@@ -1,6 +1,6 @@
 package org.example.square.trade.model;
 
-public class RootCategory {
+public class RootCategory implements KeywordsEngine {
     private String type;
     private String keyword;
 

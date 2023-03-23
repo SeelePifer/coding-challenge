@@ -8,6 +8,7 @@ public class HomeApplicance extends RootCategory {
     }
 
     public HomeApplicance(String type, KeyboardHome keyword) {
+        super(type, String.valueOf(keyword));
         this.type = type;
         this.keyword = keyword;
     }

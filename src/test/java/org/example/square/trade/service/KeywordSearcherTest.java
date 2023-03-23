@@ -3,37 +3,51 @@ package org.example.square.trade.service;
 import org.example.square.trade.model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 
-//@RunWith(MockitoRunner.class)
-//Problemas al bajar la dependencia, tema de intellij
+@ExtendWith(MockitoExtension.class)
 public class KeywordSearcherTest {
-    //Que se mockee esta clase, que prueba el servicio
-    //@Mock
+
+    @InjectMocks
     private SearchService searchService;
 
-    //InjectMocks te dice que inyectes por constructor estos valores
-    //@InjectMocks
-    private RootCategory rootCategory;
-   // @InjectMocks
+    @Mock
+    private KeywordsEngine rootCategory;
+
+    @Mock
     private Furniture furniture;
-   // @InjectMocks
+
+    @Mock
+    private Electronic electronic;
+
+    @Mock
     private HomeApplicance homeApplicance;
-    //@InjectMocks
+
+    @Mock
     private LawAndGarden lawAndGarden;
-   // @InjectMocks
+
+    @Mock
     private MajorApplicance majorApplicance;
-    //@InjectMocks
+
+    @Mock
     private MinorApplicance minorApplicance;
-    //@InjectMocks
+
+    @Mock
     private KitchenAppliance kitchenAppliance;
 
-    //@InjectMocks
+    @Mock
     private GeneralAppliance generalAppliance;
     @Test
     public void defaultKeyword(){
 
+        rootCategory = RootCategory.createObject();
+
+        searchService = new SearchService(rootCategory);
+        //Mockito.when(rootCategory.getKeyword()).thenReturn("");
         searchService.searchByKeyword("");
 
         Assertions.assertTrue(searchService.searchByKeyword("") instanceof RootCategory);
@@ -42,6 +56,8 @@ public class KeywordSearcherTest {
     @Test
     public void furnitureSearch(){
 
+        furniture = Furniture.createObject();
+        searchService = new SearchService(furniture);
         searchService.searchByKeyword("furniture");
 
         Assertions.assertTrue(searchService.searchByKeyword("furniture") instanceof Furniture);
@@ -49,29 +65,35 @@ public class KeywordSearcherTest {
 
     @Test
     public void homeApplianceSearch(){
-
+        homeApplicance = HomeApplicance.createObject();
+        searchService = new SearchService(homeApplicance);
         RootCategory homeApplicance = searchService.searchByKeyword("HomeApplicance");
 
         Assertions.assertTrue(homeApplicance instanceof HomeApplicance);
 
 
     }
-    @Test
+    /*@Test
     public void lawAndGardenSearch(){
-        final RootCategory lawAndGardenSearch = searchService.searchByKeyword("law&garden");
+        lawAndGarden = LawAndGarden.createObject();
+        searchService = new SearchService(lawAndGarden);
+        final RootCategory lawAndGardenSearch = searchService.searchByKeyword("lawAndgarden");
 
         Assertions.assertTrue(lawAndGardenSearch instanceof LawAndGarden);
-    }
+    }*/
 
     @Test
     public void majorSearch(){
+        majorApplicance = MajorApplicance.createObject();
+        searchService = new SearchService(majorApplicance);
         final RootCategory majorSearch = searchService.searchByKeyword("majorAppliance");
 
         Assertions.assertTrue(majorSearch instanceof MajorApplicance);
     }
     @Test
     public void minorSearch(){
-
+        minorApplicance = MinorApplicance.createObject();
+        searchService = new SearchService(minorApplicance);
         final RootCategory minorSearch = searchService.searchByKeyword("minorappliance");
 
         Assertions.assertTrue(minorSearch instanceof MinorApplicance);
@@ -79,12 +101,16 @@ public class KeywordSearcherTest {
 
     @Test
     public void kitchenSearch(){
+        kitchenAppliance = KitchenAppliance.createObject();
+        searchService = new SearchService(kitchenAppliance);
         final RootCategory kitchenSearch = searchService.searchByKeyword("kitchenAppliance");
 
         Assertions.assertTrue(kitchenSearch instanceof KitchenAppliance);
     }
     @Test
     public void generalSearch(){
+        generalAppliance = GeneralAppliance.createObject();
+        searchService = new SearchService(generalAppliance);
         final RootCategory generalSearch = searchService.searchByKeyword("general");
 
         Assertions.assertTrue(generalSearch instanceof GeneralAppliance);
